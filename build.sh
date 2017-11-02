@@ -7,6 +7,6 @@ mkdir build && cd build
 cmake ..
 make
 make test
-if [ $? != 0 ] ; then
+if [ $? != 0 ] || [ ! -f "derivejson_example" ] ; then
     exit 1
 fi

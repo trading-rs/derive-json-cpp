@@ -32,11 +32,20 @@ include_directories(
   )
 
 toggle_option(BUILD_DERIVEJSON_TESTS "Set to ON to build derivejson tests." ON)
+toggle_option(BUILD_DERIVEJSON_EXEC "Set to ON to build DERIVEJSON exec." ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++14")
+
+if(BUILD_DERIVEJSON_EXEC)
+  add_executable(derivejson_example example/example.cc)
+endif()
 
 if(BUILD_DERIVEJSON_TESTS)
   add_executable(derivejson_tests test/tests.cc)
   enable_testing()
   add_test(NAME Tests COMMAND derivejson_tests)
+endif()
+
+if(BUILD_DERIVEJSON_EXEC AND BUILD_DERIVEJSON_TESTS)
+  add_dependencies(derivejson_example derivejson_tests)
 endif()
