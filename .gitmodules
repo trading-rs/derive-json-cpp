@@ -1,0 +1,9 @@
+[submodule "libs/catch"]
+	path = libs/catch
+	url = https://github.com/philsquared/Catch.git
+[submodule "libs/json"]
+	path = libs/json
+	url = https://github.com/nlohmann/json.git
+[submodule "libs/preprocessor"]
+	path = libs/preprocessor
+	url = https://github.com/boostorg/preprocessor.git
