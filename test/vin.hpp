@@ -13,5 +13,7 @@ namespace vin {
   DEFINE_MODEL_JSON(VinJSON, (string, transaction_id, "txid")(int, vout, "vout"))
   DEFINE_MODEL_TO_JSON(VinToJSON, (string, transaction_id, "txid")(int, vout, "vout"))
   DEFINE_MODEL_FROM_JSON(VinFromJSON, (string, transaction_id, "txid")(int, vout, "vout"))
+  DEFINE_MODEL_TO_JSON_RAW(VinToJSONRaw, (string, transaction_id, "txid")(int, vout, "vout"))
+  DEFINE_MODEL_FROM_JSON_RAW(VinFromJSONRaw, (string, transaction_id, "txid")(int, vout, "vout"))
 }
 

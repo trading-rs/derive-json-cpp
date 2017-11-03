@@ -67,3 +67,19 @@
   bool operator ==(const NAME& lhs, const NAME& rhs) {                  \
     return BOOST_PP_SEQ_FOR_EACH(DEFINE_EQUAL_OPERATOR_ELEM, _, BOOST_PP_CAT(CREATE_MY_MACRO_PLACEHOLDER_FILLER_0 TYPES_AND_NAMES,_END)) true; \
   }
+
+#define DEFINE_MODEL_TO_JSON_RAW(NAME, TYPES_AND_NAMES)                 \
+  struct NAME {                                                         \
+    BOOST_PP_SEQ_FOR_EACH(DECLARE_DATA_MEMBER, _, BOOST_PP_CAT(CREATE_MY_MACRO_PLACEHOLDER_FILLER_0 TYPES_AND_NAMES,_END)) \
+  };                                                                    \
+  void to_json(json& j, const NAME& o) {                                \
+    j = json{BOOST_PP_SEQ_FOR_EACH(DEFINE_SERIALIZATION_ELEMENT, _, BOOST_PP_CAT(CREATE_MY_MACRO_PLACEHOLDER_FILLER_0 TYPES_AND_NAMES,_END))}; \
+  }
+
+#define DEFINE_MODEL_FROM_JSON_RAW(NAME, TYPES_AND_NAMES)               \
+  struct NAME {                                                         \
+    BOOST_PP_SEQ_FOR_EACH(DECLARE_DATA_MEMBER, _, BOOST_PP_CAT(CREATE_MY_MACRO_PLACEHOLDER_FILLER_0 TYPES_AND_NAMES,_END)) \
+  };                                                                    \
+  void from_json(const json& j, NAME& o) {                              \
+    BOOST_PP_SEQ_FOR_EACH(DEFINE_DESERIALIZATION_ELEMENT, _, BOOST_PP_CAT(CREATE_MY_MACRO_PLACEHOLDER_FILLER_0 TYPES_AND_NAMES,_END)) \
+  }
